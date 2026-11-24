@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #e8f5e9;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: darkgreen;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            background: #dcedc8;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background: green;
+            color: white;
+        }
+
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Student Management System</h1>
+    <h2>Student Examination Results</h2>
+
+    <div class="summary">
+        <h3>Total: <span id="total">0</span></h3>
+        <h3>Passed: <span id="passed">0</span></h3>
+        <h3>Failed: <span id="failed">0</span></h3>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Marks</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentTable">
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+
+    // Student details
+    const students = [
+        {id: 1, name: "Ujwala", marks: 85},
+        {id: 2, name: "Priya", marks: 72},
+        {id: 3, name: "Rahul", marks: 30},
+        {id: 4, name: "Sneha", marks: 25},
+        {id: 5, name: "Arjun", marks: 90}
+    ];
+
+    let passed = 0;
+    let failed = 0;
+
+    // Display student details
+    const table = document.getElementById("studentTable");
+
+    students.forEach(student => {
+
+        let result;
+
+        if (student.marks >= 35) {
+            result = "PASS";
+            passed++;
+        } else {
+            result = "FAIL";
+            failed++;
+        }
+
+        table.innerHTML += `
+            <tr>
+                <td>${student.id}</td>
+                <td>${student.name}</td>
+                <td>${student.marks}</td>
+                <td class="${result.toLowerCase()}">
+                    ${result}
+                </td>
+            </tr>
+        `;
+    });
+
+    // Display total counts
+    document.getElementById("total").innerText =
+        students.length;
+
+    document.getElementById("passed").innerText =
+        passed;
+
+    document.getElementById("failed").innerText =
+        failed;
+
+</script>
+
+</body>
+</html>
